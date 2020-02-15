@@ -20,7 +20,7 @@ init();
 //   newSample is the value selected in the html page
 function optionChanged(newSample) {
     buildMetadata(newSample);
-    buildCharts(newSample);
+    // buildCharts(newSample);
 }
 
 // sample is name ID number
@@ -39,5 +39,6 @@ d3.json("samples.json").then((data) => {
     PANEL.html("");
     // append result to H6 heading and the result's location
     PANEL.append("h6").text(result.location);
+    console.log("test")
 });
 }
