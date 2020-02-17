@@ -14,8 +14,9 @@ function init() {
             .property("value", sample);
         });
 })}
-  
+
 init();
+// open page with info for subject 940
 optionChanged(940);
 
 //   newSample is the value selected in the html page
@@ -39,7 +40,6 @@ d3.json("samples.json").then((data) => {
     // clear content in Demographic Info panel
     PANEL.html("");
     // append result to H6 heading and the result's location
-    // PANEL.append("h6").text("ID: " + result.id + "\n" + "Ethnicity: " + result.ethnicity + "\n Gender: " + result.gender + "\n Age: " + result.age + "\n Location: " + result.location + "\n Bbtype: " + result.bbtype + "\n Wfreq: " + result.wfreq);
     PANEL.append("h6").text("ID: " + result.id);
     PANEL.append("h6").text("Ethnicity: " + result.ethnicity);
     PANEL.append("h6").text("Gender: " + result.gender);
@@ -90,11 +90,11 @@ function buildCharts(sample) {
 
         // save complete results
         values = result.sample_values;
-        console.log(values);
+        // console.log(values);
         otuIds = result.otu_ids;
-        console.log(otuIds);
+        // console.log(otuIds);
         otuLabels = "OTU Labels: " + result.otu_labels;
-        console.log(otuLabels);
+        // console.log(otuLabels);
 
     // call plot functions
     barPlot();
@@ -156,14 +156,8 @@ function bubblePlot() {
             colorscale: 'Earth',
         }
       };
-      console.log('box plot')
-      console.log(otuIds);
-      console.log(values);
-      console.log(otuLabels);
-
-
       var data = [trace1];
-      
+
       var layout = {
         title: 'Bacterial Count: Hover mouse over text',
         showlegend: false,
@@ -172,7 +166,7 @@ function bubblePlot() {
         xaxis: {title: {text: 'OTU ID'}},
         yaxis: {title: {text: 'Count'}}
       };
-      
+
       Plotly.newPlot("plot2", data, layout);
 };
 
@@ -185,7 +179,6 @@ function gaugePlot() {
           title: { text: "Weekly Belly Button Washing Frequency" },
           type: "indicator",
           mode: "gauge+number",
-          // delta: { reference: 380 },
           gauge: {
             axis: { range: [null, 10]},
             bar: { color: "forestgreen" },
@@ -196,16 +189,9 @@ function gaugePlot() {
               { range: [7, 9], color: "lightyellow" },
               { range: [9, 10], color: "pink" }
             ],
-            // threshold: {
-            //   line: { color: "red", width: 4 },
-            //   thickness: 0.75,
-            //   value: 9
-            // }
           }
         }
       ];
       var layout = { width: 500, height: 450, margin: { t: 0, b: 0 } };
       Plotly.newPlot('plot3', data, layout);
 };
-// gauge
-// https://code.tutsplus.com/tutorials/create-interactive-charts-using-plotlyjs-pie-and-gauge-charts--cms-29216
