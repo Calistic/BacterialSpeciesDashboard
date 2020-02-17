@@ -129,7 +129,7 @@ function barPlot() {
     var data = [trace1];
     // Apply the group bar mode to the layout
     var layout = {
-    title: "Bacterial Count",
+    title: "Top 10 Bacterial Count",
     margin: {
         l: 100,
         r: 100,
@@ -159,7 +159,7 @@ function bubblePlot() {
       var data = [trace1];
 
       var layout = {
-        title: 'Bacterial Count: Hover mouse over text',
+        title: 'Bacterial Counts',
         showlegend: false,
         height: 600,
         width: 1200,
