@@ -47,6 +47,9 @@ d3.json("samples.json").then((data) => {
     PANEL.append("h6").text("Location: " + result.location);
     PANEL.append("h6").text("Bbtype: " + result.bbtype);
     PANEL.append("h6").text("Washing Freq: " + result.wfreq);
+
+    // Save wash frequency to var
+    washFreq=result.wfreq;
 });
 }
 
@@ -57,6 +60,7 @@ var otuLabels=[];
 var topSampleValues=[];
 var topOtuIds=[];
 var topOtuLabels=[];
+var washFreq=5;
 
 function buildCharts(sample) {
     // pull data from samples.json then refer to it as data
@@ -109,7 +113,6 @@ function barPlot() {
     topSampleValues = topSampleValues.reverse();
     topOtuIds = topOtuIds.reverse();
     topOtuLabels = topOtuLabels.reverse();
-
     // Trace1 for the Greek Data
     var trace1 = {
     x: topSampleValues,
@@ -117,12 +120,13 @@ function barPlot() {
     text: topOtuLabels,
     name: "Greek",
     type: "bar",
-    orientation: "h"
+    orientation: "h",
+    marker: {
+        color: 'rgb(142,124,195)'
+      }
     };
-
     // data
     var data = [trace1];
-
     // Apply the group bar mode to the layout
     var layout = {
     title: "Bacterial Count",
@@ -131,9 +135,10 @@ function barPlot() {
         r: 100,
         t: 100,
         b: 100
-    }
+    },
+    xaxis: {title: {text: 'Count'}},
+    yaxis: {title: {text: 'OTU ID'}}
     };
-
     // Render the plot to the div tag with id "plot"
     Plotly.newPlot("plot1", data, layout);
 }
@@ -163,7 +168,9 @@ function bubblePlot() {
         title: 'Bacterial Count: Hover mouse over text',
         showlegend: false,
         height: 600,
-        width: 1000
+        width: 1200,
+        xaxis: {title: {text: 'OTU ID'}},
+        yaxis: {title: {text: 'Count'}}
       };
       
       Plotly.newPlot("plot2", data, layout);
@@ -171,7 +178,34 @@ function bubblePlot() {
 
 // Gauge Plot
 function gaugePlot() {
-
+    var data = [
+        {
+          domain: { x: [0, 1], y: [0, 1] },
+          value: washFreq,
+          title: { text: "Weekly Belly Button Washing Frequency" },
+          type: "indicator",
+          mode: "gauge+number",
+          // delta: { reference: 380 },
+          gauge: {
+            axis: { range: [null, 10]},
+            bar: { color: "forestgreen" },
+            steps: [
+              { range: [0, 1], color: "pink" },
+              { range: [1, 3], color: "lightyellow" },
+              { range: [3, 7], color: "lightgreen" },
+              { range: [7, 9], color: "lightyellow" },
+              { range: [9, 10], color: "pink" }
+            ],
+            // threshold: {
+            //   line: { color: "red", width: 4 },
+            //   thickness: 0.75,
+            //   value: 9
+            // }
+          }
+        }
+      ];
+      var layout = { width: 500, height: 450, margin: { t: 0, b: 0 } };
+      Plotly.newPlot('plot3', data, layout);
 };
 // gauge
 // https://code.tutsplus.com/tutorials/create-interactive-charts-using-plotlyjs-pie-and-gauge-charts--cms-29216
