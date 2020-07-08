@@ -1,6 +1,6 @@
 # Module 12
 
-## Link to Challenge: 
+## Link to Dashboard: 
 [Belly Button Bacterial Study Dashboard](https://calistic.github.io/BacterialSpeciesDashboard/)
 
 ## Dashboard Example
