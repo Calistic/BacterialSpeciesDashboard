@@ -1,5 +1,3 @@
-# Module 12
-
 ## Link to Dashboard
 [Belly Button Bacterial Study Dashboard](https://calistic.github.io/Interactive_Dashboard_Bacterial_Swab/)
 
