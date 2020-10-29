@@ -10,8 +10,8 @@
 Create an interactive dashboard to display easily interoperable results from a clinical experiment.
 
 ## Methods
-- Use d3.json to fetch and parse biodiversity datasamples.json, manipulate and filter data to display information specific to particular volunteer.
+- Use d3.json to retrieve and parse json file. Curate data to display information specific to specific volunteers.
 
-- Use event handlers in JavaScript to add interactivity to a data visualization.
+- Use event handlers in JavaScript for interactivity.
 
 - Create dynamic plots with Plotly, including bar charts, bubble chart, and gauge indicator chart.
